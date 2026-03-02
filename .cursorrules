@@ -1,0 +1,15 @@
+# CreativeDev Cursor Rules
+
+- Always follow AGENTS.md
+- Ask before creating new folders
+- Max 15 components
+- Server components by default
+- Use early returns
+- No nested ternaries
+- No `any` types
+- Tailwind for styling
+- Use Hero, CTA, and Testimonials sections as defined
+- WhatsApp links must use generateWhatsAppLink utility
+- Testimonial names must be real African names; avatars must reflect this
+- Optimize images for web
+- Validate responsive design on mobile
