@@ -1,23 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Quote, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import Link from "next/link";
-
-const testimonials = [
-  {
-    quote:
-      "CreativeDev transformed our digital presence. Their attention to detail and artistic vision is unmatched in the industry.",
-    author: "Amara Okafor",
-    role: "CEO, Lumina Tech",
-  },
-  {
-    quote:
-      "The fluid animations and high-performance code they delivered exceeded all our expectations. A truly specialist team.",
-    author: "Kwame Asante",
-    role: "CTO, Nexus Labs",
-  },
-];
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -28,9 +13,21 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
-const socialLinks = ["Instagram", "Twitter", "Github", "LinkedIn"];
+const socialLinks = [
+  { name: "Instagram", href: "https://instagram.com/frontendgeek_" },
+  { name: "Twitter", href: "https://twitter.com/OlayeyeMuideen" },
+  { name: "Github", href: "https://github.com/Muideen7" },
+  { name: "LinkedIn", href: "https://linkedin.com/in/Muideen7" },
+];
 
 export default function Footer() {
+  const email = "olayeyeayomide2@gmail.com";
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(email);
+    alert("Email copied to clipboard!");
+  };
+
   return (
     <footer className="bg-obsidian pt-32 pb-12 px-6 md:px-20 relative overflow-hidden">
       {/* Background Elements */}
@@ -40,34 +37,6 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        {/* Testimonials Preview */}
-        <div className="grid md:grid-cols-2 gap-12 mb-32">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.author}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-              className="glass p-12 relative group"
-            >
-              <Quote
-                className="absolute top-8 right-8 text-white/5 group-hover:text-cyan-electric/20 transition-colors"
-                size={64}
-              />
-              <p className="text-2xl md:text-3xl font-display font-medium mb-8 leading-relaxed italic">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div>
-                <p className="font-bold text-white">{t.author}</p>
-                <p className="text-xs uppercase tracking-widest font-bold text-white/30">
-                  {t.role}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-2 gap-20 mb-32">
           <div>
@@ -83,7 +52,10 @@ export default function Footer() {
               >
                 Start a Project
               </Link>
-              <button className="btn-pill glass border-white/10 text-xs uppercase tracking-widest font-bold hover:bg-white/5 cursor-pointer">
+              <button 
+                onClick={copyEmail}
+                className="btn-pill glass border-white/10 text-xs uppercase tracking-widest font-bold hover:bg-white/5 cursor-pointer"
+              >
                 Copy Email
               </button>
             </div>
@@ -114,10 +86,10 @@ export default function Footer() {
               <ul className="flex flex-col gap-4">
                 <li>
                   <a
-                    href="mailto:hello@creativedev.com"
+                    href={`mailto:${email}`}
                     className="text-sm font-medium hover:text-cyan-electric transition-colors"
                   >
-                    hello@creativedev.com
+                    {email}
                   </a>
                 </li>
                 <li>
@@ -147,21 +119,23 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          <div className="flex gap-8 md:gap-12">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12">
             {socialLinks.map((social) => (
               <a
-                key={social}
-                href="#"
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xs uppercase tracking-widest font-bold text-white/40 hover:text-white transition-colors relative group flex items-center gap-2"
               >
-                {social}
+                {social.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-cyan-electric transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </div>
 
           <div className="w-full pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-[10px] uppercase tracking-widest font-bold text-white/20">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-white/20 text-center md:text-left">
               © {new Date().getFullYear()} CreativeDev. All rights reserved.
               Crafted with passion by specialists.
             </p>
