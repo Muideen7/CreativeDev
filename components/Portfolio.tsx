@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { X, ArrowUpRight, Play, ExternalLink, Loader2 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -106,7 +107,6 @@ function ProjectCard({
   index,
   onViewDetails,
   className = "",
-  isHomepage = false,
 }: ProjectCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -131,17 +131,7 @@ function ProjectCard({
     return () => { cancelled = true; };
   }, [project.url, project.title, project.description]);
 
-  const shapes = [
-    "rounded-[4rem_2rem_4rem_2rem]",
-    "rounded-[2rem_4rem_2rem_4rem]",
-    "rounded-[3rem_3rem_3rem_3rem]",
-    "rounded-[5rem_2rem_2rem_2rem]",
-    "rounded-[2rem_5rem_2rem_2rem]",
-    "rounded-[2rem_2rem_5rem_2rem]",
-  ];
-  const shapeClass = isHomepage
-    ? "rounded-[3rem_1rem_3rem_1rem]"
-    : shapes[index % shapes.length];
+  const shapeClass = "rounded-[1.5rem]";
 
   useEffect(() => {
     if (!cardRef.current) return;
@@ -282,9 +272,12 @@ export default function Portfolio({ isHomepage = false }: { isHomepage?: boolean
               A collection of digital experiences we&apos;ve crafted for forward-thinking brands.
             </p>
           </div>
-          <button className="btn-pill glass border-white/10 text-xs uppercase tracking-widest font-bold hover:bg-white/5">
+          <Link
+            href="/portfolio"
+            className="btn-pill glass border-white/10 text-xs uppercase tracking-widest font-bold hover:bg-white/5"
+          >
             View All Projects
-          </button>
+          </Link>
         </motion.div>
 
         {isHomepage ? (
